@@ -6,7 +6,7 @@ $username = 'root';
 $password = '';
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -14,11 +14,11 @@ if ($conn->connect_error) {
 }
 
 // SQL query to select data from the table
-$sql = "SELECT name, matric_no, current_address, home_address, email, mobile_phone, home_phone FROM students";
+$sql = "SELECT name, matric_no, current_address, home_address, email, mobile_phone, home_phone FROM student_details";
 $result = $conn->query($sql);
 
 // Start HTML output
-echo '<table border="1">';
+echo '<table class="table table-bordered">';
 echo '<tr><th>Name</th><th>Matric No</th><th>Current Address</th><th>Home Address</th><th>Email</th><th>Mobile Phone</th><th>Home Phone</th></tr>';
 
 // Output data of each row
