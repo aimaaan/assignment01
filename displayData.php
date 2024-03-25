@@ -1,20 +1,22 @@
 <?php
-// Database configuration
-$host = 'localhost'; // or your database host
+$host = 'localhost'; 
 $dbname = 'webapp_security';
 $username = 'root';
 $password = '';
 
-// Create connection
 $conn = new mysqli($host, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQL query to select data from the table
-$sql = "SELECT name, matric_no, current_address, home_address, email, mobile_phone, home_phone FROM student_details";
+// Pagination parameters
+$limit = 10; // Number of records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page number
+$offset = ($page - 1) * $limit; // Calculate the offset
+
+// SQL query to select data from the table with limit and offset
+$sql = "SELECT name, matric_no, current_address, home_address, email, mobile_phone, home_phone FROM student_details LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 
 // Start HTML output
@@ -40,6 +42,4 @@ if ($result->num_rows > 0) {
 
 echo '</table>';
 
-// Close connection
 $conn->close();
-
