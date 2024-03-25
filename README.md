@@ -18,7 +18,7 @@ It includes JS built-in regex function of ```test()``` for each input validation
 - addData.php:
 After the form submission, addData.php handles the server-side validation and processing of the submitted data. It inserts the data into a MySQL database if all validations pass.
 This file ensures that the data stored in the database is consistent and formatted correctly.
-It includes PHP built-in regex function of ```pre-reg()``` for each input validation.
+It includes PHP built-in regex function of ```preg_match()``` for each input validation.
 
 - displayData.php:
 This PHP script retrieves and displays all student details stored in the database. It generates a dynamic HTML table that lists every student's details.
