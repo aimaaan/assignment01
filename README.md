@@ -1,4 +1,4 @@
-INFO4345 WEB APP SECURITY | Assignment 01
+INFO4345 WEB APP SECURITY | Class Assignment - Input Validation (Client & Server Side)
 
 Overview
 This project consists of a web form that collects student details, validates the input on the client-side, submits the data to the server, and then displays the submitted data dynamically on another page. 
