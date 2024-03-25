@@ -2,13 +2,13 @@
 
 # OVERVIEW
 This project consists of a web form that collects student details, validates the input on the client-side, submits the data to the server, and then displays the submitted data dynamically on another page. 
-The project utilizes HTML, CSS (with Bootstrap for styling), JavaScript for client-side validation, and PHP for server-side operations including form submission handling and data display.
+The project utilizes HTML, CSS (with Bootstrap for styling), JavaScript for client-side validation, and PHP for server-side operations including form submission handling and data display. Implement secure input validation by using built-in regex function for html, js, and php.
 
 ## Consists of:
 - form.html:
 This is the main page of the application where users can enter student details.
 It includes fields for the student's name, matriculation number, current address, home address, email, mobile phone number, and home phone number.
-The form uses Bootstrap for styling to make it visually appealing.
+The form include html built-in regex of using pattern for each input validation.
 
 - validation.js:
 This JavaScript file is responsible for client-side validation of the form inputs in form.html.
