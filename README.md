@@ -8,15 +8,17 @@ The project utilizes HTML, CSS (with Bootstrap for styling), JavaScript for clie
 - form.html:
 This is the main page of the application where users can enter student details.
 It includes fields for the student's name, matriculation number, current address, home address, email, mobile phone number, and home phone number.
-The form include html built-in regex of using pattern for each input validation.
+The form include html built-in regex of using ```pattern=" "``` for each input validation.
 
 - validation.js:
 This JavaScript file is responsible for client-side validation of the form inputs in form.html.
 It checks that all inputs match their respective patterns (e.g., email format, phone number length) and alerts the user to any validation errors before the form is submitted.
+It includes JS built-in regex function of ```test()``` for each input validation.
 
 - addData.php:
 After the form submission, addData.php handles the server-side validation and processing of the submitted data. It inserts the data into a MySQL database if all validations pass.
 This file ensures that the data stored in the database is consistent and formatted correctly.
+It includes PHP built-in regex function of ```pre-reg()``` for each input validation.
 
 - displayData.php:
 This PHP script retrieves and displays all student details stored in the database. It generates a dynamic HTML table that lists every student's details.
