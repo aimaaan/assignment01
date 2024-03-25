@@ -62,23 +62,22 @@ INFO4345/S1 WEB APP SECURITY -->
                 </div>
             </form>
         </div>
-        
-        <section>
-            <h1 style="text-align: center;margin: 50px 0;">B. Student Data</h1>
-            <div class="container">
-                <table class="table table-hover">
-                    <tbody>
-                        <div id="data-container"></div>
-                        <script>
-                            fetch('displayData.php')
-                                .then(response => response.text())
-                                .then(html => document.getElementById('data-container').innerHTML = html)
-                                .catch(error => console.error('Error loading the data:', error));
-                        </script>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    </section>
+
+    <section>
+        <h1 style="text-align: center;margin: 50px 0;">B. Student Data</h1>
+        <div class="container">
+            <table class="table table-hover">
+                <tbody id="data-container">
+                    <script>
+                        fetch('displayData.php')
+                            .then(response => response.text())
+                            .then(html => document.getElementById('data-container').innerHTML = html)
+                            .catch(error => console.error('Error loading the data:', error));
+                    </script>
+                </tbody>
+            </table>
+        </div>
     </section>
         
 </body>
