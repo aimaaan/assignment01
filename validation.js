@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector('form');
     
     form.addEventListener('submit', function(event) {
-        // Prevent form submission to check the validation
         event.preventDefault();
     
         let isValid = true;
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
             isValid = false;
         }
     
-        // If all inputs are valid, submit the form
         if (isValid) {
             form.submit();
             console.log('Form submitted');
