@@ -15,3 +15,11 @@ body {
     padding: 15px;
     height: 350px; /* Adjust the height value as needed */
 }
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 19px;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px
+}
