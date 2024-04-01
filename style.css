@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+    
+.form-container {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    height: 350px; /* Adjust the height value as needed */
+}
