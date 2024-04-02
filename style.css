@@ -13,7 +13,7 @@ body {
     width: 100%;
     max-width: 330px;
     padding: 15px;
-    height: 350px; /* Adjust the height value as needed */
+    height: 350px; 
 }
 
 input[type="checkbox"] {
