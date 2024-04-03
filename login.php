@@ -1,6 +1,6 @@
 <?php
-session_start(); // Start the session.
-require 'db.php'; // Assume 'db.php' connects to the database.
+session_start(); 
+require 'db.php'; 
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
