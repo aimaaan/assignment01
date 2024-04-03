@@ -1,14 +1,6 @@
 <?php
-$host = 'localhost'; 
-$dbname = 'webapp_security';
-$username = 'root';
-$password = '';
-
-$conn = new mysqli($host, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+session_start(); // Start the session.
+require 'db.php'; // Assume 'db.php' connects to the database.
 
 // Check if form data is posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

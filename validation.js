@@ -1,7 +1,9 @@
+//validate the form before submitting it to the server side for further processing and storage in the database
+
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector('form');
     
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', 'login', function(event) {
         event.preventDefault();
     
         let isValid = true;
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Validation for Email
         const emailInput = document.getElementById('email');
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+        const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
         if (!emailPattern.test(emailInput.value)) {
             alert('Please enter a valid email address.');
             isValid = false;
@@ -68,3 +70,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+
+
+function togglePasswordVisibility() {
+    var passwordInput = document.getElementById('password');
+    var toggle = document.getElementById('togglePassword');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggle.textContent = '🙈';
+    } else {
+        passwordInput.type = 'password';
+        toggle.textContent = '👁️';
+    }
+}
