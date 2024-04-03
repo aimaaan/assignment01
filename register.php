@@ -11,9 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         die("Please enter a valid email address.");
     }
-    if (empty($password) || strlen($password) < 6) {
-        die("Please enter a valid password. Passwords must be at least 6 characters.");
+    if (empty($password) || strlen($password) < 8) {
+        die("Please enter a valid password. Passwords must be at least 8 characters.");
     }
+
+    // Sanitize email to prevent XSS
+    $email = htmlspecialchars($email);
 
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);

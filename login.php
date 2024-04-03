@@ -33,3 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $stmt->close();
     $conn->close();
 }
+
+if (!isset($_SESSION['user_id'])) {
+    // If the user is not logged in, redirect to the login page.
+    header("Location: login.html");
+    exit();
+}

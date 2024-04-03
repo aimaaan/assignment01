@@ -1,9 +1,10 @@
 //validate the form before submitting it to the server side for further processing and storage in the database
+//js for the main page
 
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector('form');
     
-    form.addEventListener('submit', 'login', function(event) {
+    form.addEventListener('submit', function(event) {
         event.preventDefault();
     
         let isValid = true;
@@ -70,8 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
-
 
 function togglePasswordVisibility() {
     var passwordInput = document.getElementById('password');
