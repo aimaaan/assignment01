@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the prepared statement
     if ($stmt->execute()) {
-        echo "New record created successfully";
+        header("Location: form.html");
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -66,23 +66,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo "No data posted with HTTP POST.";
 }
-
-// Redirect to the home page
-// Clear session variables
-$_SESSION = array();
-
-// Destroy session cookie
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-    );
-}
-
-// Destroy the session
-session_destroy();
-
-// Optionally, redirect the user to the login page 
-header("Location: login.html");
-exit();
