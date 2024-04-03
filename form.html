@@ -31,7 +31,7 @@ INFO4345/S1 WEB APP SECURITY -->
     </nav>
     
     <section id="section1" style="margin: 50px 0;">
-        <h1 style="text-align: center;margin: 50px 0;" >A. Student Details</h1>
+        <h1 style="text-align: center;margin: 20px 0;" >A. Student Details</h1>
         <div class="container">
             <form id="form" action="addData.php" method="post" onsubmit="return validation()">
                 <div class="row text-align">
@@ -45,27 +45,27 @@ INFO4345/S1 WEB APP SECURITY -->
                         <input type="text" id="matric-no" name="matric_no" class="form-control" pattern="^\d{7}$" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group"><br>
                         <label for="current-address" class="form-label">Current Address:</label>
                         <textarea id="current-address" name="current_address" class="form-control" pattern="[A-Za-z0-9\s,.]+(?:\d{5})?.*" required></textarea>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group"><br>
                         <label for="home-address" class="form-label">Home Address:</label>
                         <textarea id="home-address" name="home_address" class="form-control" pattern="[A-Za-z0-9\s,.]+(?:\d{5})?.*" required></textarea>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group"><br>
                         <label for="email" class="form-label">Email (Gmail Account):</label>
                         <input type="email" id="email" name="email" class="form-control" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
                     </div>
                     
-                    <div class="form-group col-lg-2">
+                    <div class="form-group col-lg-2"><br>
                         <label for="mobile-phone" class="form-label">Mobile Phone No:</label>
                         <input type="tel" id="mobile-phone" name="mobile_phone" class="form-control" pattern="[0-9].{10,}" required>
                     </div>
 
-                    <div class="form-group col-lg-3">
+                    <div class="form-group col-lg-3"><br>
                         <label for="home-phone" class="form-label">Home Phone No (Emergency):</label>
                         <input type="tel" id="home-phone" name="home_phone" class="form-control" pattern="[0-9].{10,}" required>
                     </div>
