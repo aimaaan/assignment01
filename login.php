@@ -1,12 +1,12 @@
 <?php
 session_start();
-require 'db.php'; // Your database connection file
+require 'db.php';
 
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Example using a placeholder for fetching user data
+    
     $stmt = $conn->prepare("SELECT id, email, password FROM auth WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
