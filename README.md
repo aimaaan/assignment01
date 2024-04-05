@@ -1,31 +1,22 @@
 # INFO4345 WEB APP SECURITY | Class Assignment - Input Validation (Client & Server Side)
 
-# OVERVIEW
-This project consists of a web form that collects student details, validates the input on the client-side, submits the data to the server, and then displays the submitted data dynamically on another page. 
-The project utilizes HTML, CSS (with Bootstrap for styling), JavaScript for client-side validation, and PHP for server-side operations including form submission handling and data display. Implement secure input validation by using built-in regex function for html, js, and php.
+## Overview
+This project showcases a comprehensive approach to web application security focusing on input validation from both client and server-side perspectives. It involves a web form designed to collect student details, employing HTML, CSS (Bootstrap for styling), JavaScript, and PHP. The emphasis is on secure input validation using regex functions across HTML, JavaScript, and PHP to ensure robust data integrity and prevent common web vulnerabilities.
 
-## Consists of:
-- *form.html:*
-This is the main page of the application where users can enter student details.
-It includes fields for the student's name, matriculation number, current address, home address, email, mobile phone number, and home phone number.
-The form include html built-in regex of using ```pattern=" "``` for each input validation.
+## Components
+- **form.html**: The primary interface where users input student details. Fields include student name, matriculation number, addresses, email, and phone numbers, with HTML's `pattern` attribute for regex-based validation.
+- **validation.js**: Manages client-side validation, ensuring all input fields conform to expected formats before submission. Utilizes JavaScript's `test()` method for regex validation.
+- **addData.php**: Processes form submissions server-side, performing additional validation checks before persisting data to a MySQL database. Leverages PHP's `preg_match()` for regex validation.
+- **displayData.php**: Retrieves and displays stored student information from the database, presenting it in a dynamic HTML table format.
 
-- *validation.js:*
-This JavaScript file is responsible for client-side validation of the form inputs in form.html.
-It checks that all inputs match their respective patterns (e.g., email format, phone number length) and alerts the user to any validation errors before the form is submitted.
-It includes JS built-in regex function of ```test()``` for each input validation.
+## File Interactions
+- `form.html` employs `validation.js` for preliminary client-side validation. Upon validation, data is submitted to `addData.php` for further processing.
+- `addData.php` validates, processes, and stores submitted data in the database.
+- `displayData.php` accesses the database to fetch and display the submitted details, allowing users to view entered information post-submission.
 
-- *addData.php:*
-After the form submission, addData.php handles the server-side validation and processing of the submitted data. It inserts the data into a MySQL database if all validations pass.
-This file ensures that the data stored in the database is consistent and formatted correctly.
-It includes PHP built-in regex function of ```preg_match()``` for each input validation.
+## Navigating the Application
+- Users start at `form.html`, entering student information and benefiting from real-time input validation.
+- Upon form submission, if validations pass, `addData.php` stores the data and may redirect to `displayData.php`.
+- `displayData.php` allows users to view all stored student details, demonstrating successful data storage and retrieval.
 
-- *displayData.php:*
-This PHP script retrieves and displays all student details stored in the database. It generates a dynamic HTML table that lists every student's details.
-This page is accessible after submitting the form, allowing users to see the stored information.
-
-## Relationships Between Files
-- form.html uses validation.js to validate form inputs on the client side before submission.
-- Upon submission, form.html sends data to addData.php for server-side processing and storage.
-- displayData.php is then used to fetch and display the submitted data from the database in a tabular format.
-- form.html may include a link to displayData.php or vice versa to navigate between submitting new data and viewing existing data.
+This project serves as a practical implementation of both client and server-side validation techniques, emphasizing the importance of secure data handling in web development.
