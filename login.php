@@ -1,41 +1,27 @@
 <?php
-session_start(); 
-require 'db.php'; 
+session_start();
+require 'db.php'; // Your database connection file
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Prepare and execute the SQL statement
+    // Example using a placeholder for fetching user data
     $stmt = $conn->prepare("SELECT id, email, password FROM auth WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    if ($user = $result->fetch_assoc()) {
         if (password_verify($password, $user['password'])) {
-            // Password is correct, create session variables
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
             
-            // Redirect to the protected page
-            header("Location: form.html");
+            header('Location: form.php'); // Redirect to a protected page
             exit();
-        } else {
-            echo "Invalid password.";
         }
-    } else {
-        echo "No user found with that email address.";
     }
-
-    $stmt->close();
-    $conn->close();
-}
-
-if (!isset($_SESSION['user_id'])) {
-    // If the user is not logged in, redirect to the login page.
-    header("Location: index.html");
+    header('Location: index.html'); // Redirect back to login on failure
     exit();
 }
+

@@ -1,6 +1,8 @@
 <!--AHMAD ARIF AIMAN B. AHMAD FAUZI | 2113419
 INFO4345/S1 WEB APP SECURITY -->
 
+<?php require 'session_checks.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

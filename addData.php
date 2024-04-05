@@ -4,6 +4,7 @@ require 'db.php';
 
 // Check if form data is posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
     // Retrieve form data and prevent SQL injection
     $name = $conn->real_escape_string($_POST['name']);
     $matric_no = $conn->real_escape_string($_POST['matric_no']);
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the prepared statement
     if ($stmt->execute()) {
-        header("Location: form.html");
+        header("Location: form.php");
     } else {
         echo "Error: " . $stmt->error;
     }
