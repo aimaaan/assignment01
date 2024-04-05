@@ -36,6 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
 if (!isset($_SESSION['user_id'])) {
     // If the user is not logged in, redirect to the login page.
-    header("Location: login.html");
+    header("Location: index.html");
     exit();
 }

@@ -17,6 +17,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Optionally, redirect the user to the login page or home page
-header("Location: login.html");
+header("Location: index.html");
 exit();
 
