@@ -28,7 +28,7 @@ INFO4345/S1 WEB APP SECURITY -->
                         class="form-control" 
                         id="email" 
                         placeholder="name@example.com" 
-                        name="email" required>
+                        name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
                     <label for="email">Email address</label>
                 </div>
                 <div class="form-floating">
@@ -37,7 +37,7 @@ INFO4345/S1 WEB APP SECURITY -->
                         class="form-control" 
                         id="password" 
                         placeholder="Enter password" 
-                        name="password" required onblur="validatePassword()">
+                        name="password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" required onblur="validatePassword()">
                     <label for="password">Password</label>
                     <span id="togglePassword" onclick="togglePasswordVisibility()" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);cursor:pointer;">👁️</span>
                 </div><br>
