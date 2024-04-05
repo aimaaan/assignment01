@@ -35,5 +35,3 @@ This project is designed to illustrate a secure web application framework with a
 - Once authenticated, fill out the student detail form available at `form.html`.
 - After submission, navigate to `displayData.php` to view the stored student information.
 - Use the logout functionality to end the session securely when finished.
-
-This project serves as a practical example of implementing client and server-side validation techniques alongside a secure authentication system, underlining the importance of safeguarding data and user sessions in web development.
