@@ -5,7 +5,6 @@ require 'db.php';
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
     
     $stmt = $conn->prepare("SELECT id, email, password FROM auth WHERE email = ?");
     $stmt->bind_param("s", $email);

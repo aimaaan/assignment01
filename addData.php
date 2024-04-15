@@ -2,7 +2,6 @@
 session_start(); 
 require 'db.php'; 
 
-// Check if form data is posted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Retrieve form data and prevent SQL injection
@@ -14,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mobile_phone = $conn->real_escape_string($_POST['mobile_phone']);
     $home_phone = $conn->real_escape_string($_POST['home_phone']);
 
-    // Validate form data using regular expressions
     if (!preg_match('/^[A-Za-z\s]+$/', $name)) {
         echo "Invalid name format";
         exit;
