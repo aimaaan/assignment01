@@ -18,7 +18,7 @@ if (isset($_SESSION['expiry_time']) && time() > $_SESSION['expiry_time']) {
         $redirectAfterLogin = $_SESSION['redirect_after_login'];
     } else {
         // Default redirection if the expiry_time is reached and redirect_after_login isn't set
-        $redirectAfterLogin = 'form.php'; // Adjust as necessary
+        $redirectAfterLogin = 'form.php'; 
     }
 
     // Destroy the session and start a new one for the redirect
