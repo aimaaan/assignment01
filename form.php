@@ -86,7 +86,7 @@ INFO4345/S1 WEB APP SECURITY -->
             <table class="table table-hover">
                 <tbody id="data-container">
                     <script>
-                        fetch('displayData.php')
+                        fetch('crud.php')
                             .then(response => response.text())
                             .then(html => document.getElementById('data-container').innerHTML = html)
                             .catch(error => console.error('Error loading the data:', error));
