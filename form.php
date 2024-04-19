@@ -90,6 +90,52 @@ INFO4345/S1 WEB APP SECURITY -->
                             .then(response => response.text())
                             .then(html => document.getElementById('data-container').innerHTML = html)
                             .catch(error => console.error('Error loading the data:', error));
+                        
+                        function performAction(action, id) {
+                                if (action === 'delete' && !confirm('Are you sure you want to delete this record?')) {
+                                    return; // User cancelled the delete operation
+                                }
+                                
+                                var formData = new FormData();
+                                formData.append('action', action);
+                                formData.append('id', id);
+
+                                // Add other fields if the action is 'edit'
+                                if (action === 'edit') {
+                                    formData.append('name', document.getElementById('name' + id).value);
+                                    formData.append('matric_no', document.getElementById('matric_no' + id).value);
+                                    formData.append('current_address', document.getElementById('current_address' + id).value);
+                                    formData.append('home_address', document.getElementById('home_address' + id).value);
+                                    formData.append('email', document.getElementById('email' + id).value);
+                                    formData.append('mobile_phone', document.getElementById('mobile_phone' + id).value);
+                                    formData.append('home_phone', document.getElementById('home_phone' + id).value);
+                                }
+
+                                fetch('crud.php', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                .then(response => response.text())
+                                .then(result => {
+                                    alert(result);
+                                    if (action === 'delete') {
+                                        document.getElementById('row' + id).remove(); // Remove the row from the table
+                                    } else if (action === 'edit') {
+                                        // Update the row with the new values
+                                        document.getElementById('name' + id).textContent = document.getElementById('name' + id).value;
+                                        document.getElementById('matric_no' + id).textContent = document.getElementById('matric_no' + id).value;
+                                        document.getElementById('current_address' + id).textContent = document.getElementById('current_address' + id).value;
+                                        document.getElementById('home_address' + id).textContent = document.getElementById('home_address' + id).value;
+                                        document.getElementById('email' + id).textContent = document.getElementById('email' + id).value;
+                                        document.getElementById('mobile_phone' + id).textContent = document.getElementById('mobile_phone' + id).value;
+                                        document.getElementById('home_phone' + id).textContent = document.getElementById('home_phone' + id).value;
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Operation failed');
+                                });
+                            }
                     </script>
                 </tbody>
             </table>
