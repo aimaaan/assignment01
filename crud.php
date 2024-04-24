@@ -12,7 +12,8 @@ $action = $_POST['action'] ?? '';
 $id = $_POST['id'] ?? 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action && $id) {
-    switch ($action) {
+    switch ($action) 
+    {
         case 'add':
             if ($_SESSION['role'] === 'admin') {
                 // User is an admin, can add data
@@ -89,30 +90,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action && $id) {
             }
             break;
 
-            case 'edit':
-                if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'user') {
-                    // User is an admin or a user, can edit data
-                    $name = $_POST['name'];
-                    $matric_no = $_POST['matric_no'];
-                    $current_address = $_POST['current_address'];
-                    $home_address = $_POST['home_address'];
-                    $email = $_POST['email'];
-                    $mobile_phone = $_POST['mobile_phone'];
-                    $home_phone = $_POST['home_phone'];
-            
+
+        case 'edit':
+            if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'user') {
+                // User is an admin or a user, can edit data
+                $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+                $matric_no = filter_input(INPUT_POST, 'matric_no', FILTER_SANITIZE_STRING);
+                $current_address = filter_input(INPUT_POST, 'current_address', FILTER_SANITIZE_STRING);
+                $home_address = filter_input(INPUT_POST, 'home_address', FILTER_SANITIZE_STRING);
+                $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+                $mobile_phone = filter_input(INPUT_POST, 'mobile_phone', FILTER_SANITIZE_STRING);
+                $home_phone = filter_input(INPUT_POST, 'home_phone', FILTER_SANITIZE_STRING);
+
+                try {
                     $stmt = $conn->prepare("UPDATE student_details SET name = ?, matric_no = ?, current_address = ?, home_address = ?, email = ?, mobile_phone = ?, home_phone = ? WHERE id = ?");
                     $stmt->bind_param("sssssssi", $name, $matric_no, $current_address, $home_address, $email, $mobile_phone, $home_phone, $id);
                     
                     if ($stmt->execute()) {
                         echo "<p>Record updated successfully</p>";
                     } else {
-                        echo "<p>Error updating record: " . $stmt->error . "</p>";
+                        throw new Exception("Error updating record: " . $stmt->error);
                     }
-                } else {
-                    // User is not an admin or a user, show an error message
-                    echo "You do not have permission to edit this data.";
+                } catch (Exception $e) {
+                    echo "<p>" . $e->getMessage() . "</p>";
                 }
-                break;
+            } else {
+                // User is not an admin or a user, show an error message
+                echo "You do not have permission to edit this data.";
+            }
+            break;
+
     }
 }
 
