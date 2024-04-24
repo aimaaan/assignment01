@@ -14,25 +14,38 @@ $id = $_POST['id'] ?? 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action && $id) {
     switch ($action) {
         case 'delete':
-            $stmt = $conn->prepare("DELETE FROM student_details WHERE id = ?");
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            echo "<p>Deleted</p>";  
+            if ($_SESSION['role'] === 'admin') {
+                // User is an admin, can delete any data
+                $stmt = $conn->prepare("DELETE FROM student_details WHERE id = ?");
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                echo "<p>Deleted</p>";
+            } else {
+                // User is not an admin, show an error message
+                echo "You do not have permission to delete this data.";
+            }
             break;
 
         case 'edit':
-            $name = $_POST['name'];
-            $matric_no = $_POST['matric_no'];
-            $current_address = $_POST['current_address'];
-            $home_address = $_POST['home_address'];
-            $email = $_POST['email'];
-            $mobile_phone = $_POST['mobile_phone'];
-            $home_phone = $_POST['home_phone'];
-            
-            $stmt = $conn->prepare("UPDATE student_details SET name = ?, matric_no = ?, current_address = ?, home_address = ?, email = ?, mobile_phone = ?, home_phone = ? WHERE id = ?");
-            $stmt->bind_param("sssssssi", $name, $matric_no, $current_address, $home_address, $email, $mobile_phone, $home_phone, $id);
-            $stmt->execute();
-            echo "<p>Updated</p>";  
+            if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'user') {
+                // User is an admin or a user, can edit data
+                $name = $_POST['name'];
+                $matric_no = $_POST['matric_no'];
+                $current_address = $_POST['current_address'];
+                $home_address = $_POST['home_address'];
+                $email = $_POST['email'];
+                $mobile_phone = $_POST['mobile_phone'];
+                $home_phone = $_POST['home_phone'];
+
+                $stmt = $conn->prepare("UPDATE student_details SET name = ?, matric_no = ?, current_address = ?, home_address = ?, email = ?, mobile_phone = ?, home_phone = ? WHERE id = ?");
+                $stmt->bind_param("sssssssi", $name, $matric_no, $current_address, $home_address, $email, $mobile_phone, $home_phone, $id);
+                $stmt->execute();
+        
+                echo "<p>Updated</p>";
+            } else {
+                // User is not an admin or a user, show an error message
+                echo "You do not have permission to edit this data.";
+            }
             break;
     }
 }
