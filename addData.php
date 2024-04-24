@@ -52,14 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("INSERT INTO student_details (name, matric_no, current_address, home_address, email, mobile_phone, home_phone) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssss", $name, $matric_no, $current_address, $home_address, $email, $mobile_phone, $home_phone);
 
-    // Execute the prepared statement
     if ($stmt->execute()) {
         header("Location: form.php");
     } else {
         echo "Error: " . $stmt->error;
     }
 
-    // Close statement and connection
     $stmt->close();
     $conn->close();
 } else {

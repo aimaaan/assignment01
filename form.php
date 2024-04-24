@@ -9,7 +9,7 @@ INFO4345/S1 WEB APP SECURITY -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment01</title>
+    <title>Assignment</title>
     <!--css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!--js-->
@@ -73,7 +73,7 @@ INFO4345/S1 WEB APP SECURITY -->
                     </div>
 
                     <div class="form-group" style="display: grid; align-items: flex-end; margin-top: 20px;">
-                        <input type="submit" name="formSubmit" id="formSubmit" class="btn btn-primary" required>
+                        <input type="submit" name="action" id="formSubmit" value="submit" class="btn btn-primary" required>
                     </div>
                 </div>
             </form>
@@ -86,56 +86,53 @@ INFO4345/S1 WEB APP SECURITY -->
             <table class="table table-hover">
                 <tbody id="data-container">
                     <script>
-                        fetch('crud.php')
-                            .then(response => response.text())
-                            .then(html => document.getElementById('data-container').innerHTML = html)
-                            .catch(error => console.error('Error loading the data:', error));
-                        
-                        function performAction(action, id) {
-                                if (action === 'delete' && !confirm('Are you sure you want to delete this record?')) {
-                                    return; // User cancelled the delete operation
-                                }
-                                
-                                var formData = new FormData();
-                                formData.append('action', action);
-                                formData.append('id', id);
-
-                                // Add other fields if the action is 'edit'
-                                if (action === 'edit') {
-                                    formData.append('name', document.getElementById('name' + id).value);
-                                    formData.append('matric_no', document.getElementById('matric_no' + id).value);
-                                    formData.append('current_address', document.getElementById('current_address' + id).value);
-                                    formData.append('home_address', document.getElementById('home_address' + id).value);
-                                    formData.append('email', document.getElementById('email' + id).value);
-                                    formData.append('mobile_phone', document.getElementById('mobile_phone' + id).value);
-                                    formData.append('home_phone', document.getElementById('home_phone' + id).value);
-                                }
-
-                                fetch('crud.php', {
-                                    method: 'POST',
-                                    body: formData
-                                })
+                        // Fetch data initially and after any data modification
+                        function fetchData() {
+                            fetch('crud.php')
                                 .then(response => response.text())
-                                .then(result => {
-                                    alert(result);
-                                    if (action === 'delete') {
-                                        document.getElementById('row' + id).remove(); // Remove the row from the table
-                                    } else if (action === 'edit') {
-                                        // Update the row with the new values
-                                        document.getElementById('name' + id).textContent = document.getElementById('name' + id).value;
-                                        document.getElementById('matric_no' + id).textContent = document.getElementById('matric_no' + id).value;
-                                        document.getElementById('current_address' + id).textContent = document.getElementById('current_address' + id).value;
-                                        document.getElementById('home_address' + id).textContent = document.getElementById('home_address' + id).value;
-                                        document.getElementById('email' + id).textContent = document.getElementById('email' + id).value;
-                                        document.getElementById('mobile_phone' + id).textContent = document.getElementById('mobile_phone' + id).value;
-                                        document.getElementById('home_phone' + id).textContent = document.getElementById('home_phone' + id).value;
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                    alert('Operation failed');
-                                });
+                                .then(html => document.getElementById('data-container').innerHTML = html)
+                                .catch(error => console.error('Failed to load data:', error));
+                        }
+
+                        function performAction(action, id) {
+                            if (action === 'delete' && !confirm('Are you sure you want to delete this record?')) {
+                                return; 
                             }
+
+                            const formData = new FormData();
+                            formData.append('action', action);
+                            formData.append('id', id);
+
+                            // Collect form data if action is 'edit'
+                            if (action === 'edit') {
+                                formData.append('name', document.getElementById('name' + id).value);
+                                formData.append('matric_no', document.getElementById('matric_no' + id).value);
+                                formData.append('current_address', document.getElementById('current_address' + id).value);
+                                formData.append('home_address', document.getElementById('home_address' + id).value);
+                                formData.append('email', document.getElementById('email' + id).value);
+                                formData.append('mobile_phone', document.getElementById('mobile_phone' + id).value);
+                                formData.append('home_phone', document.getElementById('home_phone' + id).value);
+                            }
+
+                            // Send data to server
+                            fetch('crud.php', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.text())
+                            .then(result => {
+                                alert('Updated successfully');
+                                fetchData(); // Reload data to reflect changes
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('An error occurred while updating the record. Please try again.');
+                            });
+                        }
+
+                        // Initial data fetch
+                        document.addEventListener('DOMContentLoaded', fetchData);
+
                     </script>
                 </tbody>
             </table>
