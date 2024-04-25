@@ -8,8 +8,8 @@ This project is designed to illustrate a secure web application framework with a
 - **Login System (`index.html` and `login.php`)**: Authenticates users, granting access to the student detail form and submitted data display. Includes client-side and server-side validation for security.
 - **Session Management (`session_checks.php`)**: Ensures that users can access certain pages only when logged in, redirecting unauthenticated users to the login page.
 - **Student Detail Form (`form.html`)**: Collects student information, utilizing client-side validation for immediate feedback and server-side validation upon submission.
-- **Data Display (`displayData.php`)**: Shows submitted student details, demonstrating secure data storage and retrieval practices.
-- **Role-Based Access Control**: Differentiates user capabilities based on their roles. Admin users have full access to all features, while user roles only able to edit.
+- **Data Display (`crud.php`)**: Shows submitted student details, demonstrating secure data storage and retrieval practices.
+- **Role-Based Access Control**: Differentiates user capabilities based on their roles. Admin users have full access to all features, while user roles only able to edit. Roles are insert manually on db based on user registration.
 
 ## Components
 - **form.html**: The primary interface where admin users input student details. Fields include student name, matriculation number, addresses, email, and phone numbers, with HTML's `pattern` attribute for regex-based validation.
@@ -33,6 +33,6 @@ This project is designed to illustrate a secure web application framework with a
 
 ## Navigating the Application
 - Start by either logging in through `index.html` or registering a new account via `register.html`.
-- Once authenticated, fill out the student detail form available at `form.html`.
+- Once authenticated, based on the role given by the admin. fill out the student detail form available at `form.html`.
 - After submission, navigate to `displayData.php` to view the stored student information.
 - Use the logout functionality to end the session securely when finished.
