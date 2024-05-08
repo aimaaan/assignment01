@@ -1,10 +1,11 @@
 <?php
-session_start();
+require 'security_config.php';
+startSecureSession();
 require 'db.php';
 
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
     
     
     $stmt = $conn->prepare("SELECT id, email, password, role FROM auth WHERE email = ?");
