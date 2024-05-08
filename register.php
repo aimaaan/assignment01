@@ -1,8 +1,14 @@
 <?php
 session_start();
 require 'db.php'; 
+require 'security_config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate CSRF token
+    if (!isset($_POST['csrf_token']) || !validateCsrfToken($_POST['csrf_token'])) {
+        die('CSRF token validation failed.');
+    }
+
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     
@@ -23,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         echo "Registration successful!";
         
-        header("Location: index.html"); // Redirect to the login page
+        header("Location: index.php"); // Redirect to the login page
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -31,4 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conn->close();
+} else {
+    // If not a POST request, invoke CSRF token generation
+    generateCsrfToken();
 }
+

@@ -26,7 +26,7 @@ if (isset($_SESSION['expiry_time']) && time() > $_SESSION['expiry_time']) {
     session_start();
     $_SESSION['redirect_after_login'] = $redirectAfterLogin;
 
-    header('Location: index.html'); // Go to login page
+    header('Location: index.php'); // Go to login page
     exit();
 }
 
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['email'])) {
     // Store the current URL for redirection after login
     $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
 
-    header("Location: index.html"); // Redirect to login page
+    header("Location: index.php"); // Redirect to login page
     exit();
 }
 

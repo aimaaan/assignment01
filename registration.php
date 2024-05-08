@@ -1,6 +1,12 @@
 <!--AHMAD ARIF AIMAN B. AHMAD FAUZI | 2113419
 INFO4345/S1 WEB APP SECURITY -->
 
+<?php 
+    require 'security_config.php'; 
+    startSecureSession();  
+    generateCsrfToken();   
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -18,17 +24,18 @@ INFO4345/S1 WEB APP SECURITY -->
 
 <body>
     <section>
-        <h1 style="text-align: center;margin: 20px 0;" >Login</h1>
-        <header style="text-align: center;margin: 20px 0;" >Please sign in to continue</header>
+        <h1 style="text-align: center;margin: 20px 0;" >Sign up</h1>
+        <header style="text-align: center;margin: 20px 0;" >Please register to continue</header>
         <div class="form-container">
-            <form action="login.php" method="post" onsubmit="return validateform()">
+            <form action="register.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <div class="form-floating mb-3">
                     <input 
                         type="email" 
                         class="form-control" 
                         id="email" 
                         placeholder="name@example.com" 
-                        name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+                        name="email" required>
                     <label for="email">Email address</label>
                 </div>
                 <div class="form-floating">
@@ -37,7 +44,7 @@ INFO4345/S1 WEB APP SECURITY -->
                         class="form-control" 
                         id="password" 
                         placeholder="Enter password" 
-                        name="password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" required onblur="validatePassword()">
+                        name="password" required>
                     <label for="password">Password</label>
                     <span id="togglePassword" onclick="togglePasswordVisibility()" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);cursor:pointer;">👁️</span>
                 </div><br>
@@ -45,11 +52,11 @@ INFO4345/S1 WEB APP SECURITY -->
                     <input type="checkbox" id="rememberMe" name="rememberMe">
                     <label for="rememberMe"> Remember Me</label>
                 </div><br>
-                <button type="login" name="login" id="login" class="btn btn-primary w-100">Login</button>
-                <p class="mt-3 text-center">Don't have an account? <a href="register.html">Sign up</a></p>
-            </form>     
+                <button type="signup" name="signup" id="signup" class="btn btn-primary w-100">Register</button>
+                <p class="mt-3 text-center">Already have an account? <a href="index.php">Login</a></p>     
+            </form>
         </div>
     </section>
-        
+
 </body>
 </html>

@@ -4,6 +4,7 @@ INFO4345/S1 WEB APP SECURITY -->
 <?php 
     require 'session_checks.php';
     require 'security_config.php'; 
+    startSecureSession(); $csrfToken = generateCsrfToken();
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +40,7 @@ INFO4345/S1 WEB APP SECURITY -->
         <h1 style="text-align: center;margin: 20px 0;" >A. Student Details</h1>
         <div class="container">
             <form id="form" action="addData.php" method="post" onsubmit="return validation()">
+            <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                 <div class="row text-align">
                     <div class="form-group col-lg-2">
                         <label for="name" class="form-label">Name (Legal/Official):</label>
