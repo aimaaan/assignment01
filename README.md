@@ -10,7 +10,7 @@ This project is designed to illustrate a secure web application framework with a
 - **Student Detail Form (`form.html`)**: Collects student information, utilizing client-side validation for immediate feedback and server-side validation upon submission.
 - **Data Display (`crud.php`)**: Shows submitted student details, demonstrating secure data storage and retrieval practices.
 - **Role-Based Access Control**: Differentiates user capabilities based on their roles. Admin users have full access to all features, while user roles can only edit.
-- **Content Security Policy (CSP)**: Implemented in `security_config.php`, it restricts resources the client loads, enhancing protection against XSS attacks by specifying trusted sources.
+- **Content Security Policy (CSP)**: Implemented in `security_config.php`, Implements a strict CSP using the `header()` function to restrict resources the browser is allowed to load, effectively mitigating XSS attacks. The policy specifies that scripts, styles, images, etc., can only be loaded from the site's own domain and other defined safe sources.
 - **XSS Defense**: Inputs are sanitized to prevent execution of malicious scripts by using regex implementation on client-side and server-side.
 - **CSRF Protection**: CSRF tokens are generated and validated for each session to prevent unauthorized actions. Implemented in `security_config.php` & are called at each of the file that using post request.
 
