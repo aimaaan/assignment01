@@ -9,7 +9,7 @@ This project is designed to illustrate a secure web application framework with a
 - **Session Management (`session_checks.php`)**: Ensures that users can access certain pages only when logged in, redirecting unauthenticated users to the login page.
 - **Student Detail Form (`form.html`)**: Collects student information, utilizing client-side validation for immediate feedback and server-side validation upon submission.
 - **Data Display (`crud.php`)**: Shows submitted student details, demonstrating secure data storage and retrieval practices.
-- **Role-Based Access Control**: Differentiates user capabilities based on their roles. Admin users have full access to all features, while user roles only able to edit. Roles are insert manually on db based on user registration.
+- **Role-Based Access Control**: Differentiates user capabilities based on their roles. Admin users have full access to all features, while user roles can only edit.
 - **Content Security Policy (CSP)**: Implemented in `security_config.php`, it restricts resources the client loads, enhancing protection against XSS attacks by specifying trusted sources.
 - **XSS Defense**: Inputs are sanitized to prevent execution of malicious scripts by using regex implementation on client-side and server-side.
 - **CSRF Protection**: CSRF tokens are generated and validated for each session to prevent unauthorized actions. Implemented in `security_config.php` & are called at each of the file that using post request.
@@ -26,13 +26,13 @@ This project is designed to illustrate a secure web application framework with a
 - **session_checks.php**: Ensures that certain pages are accessible only by authenticated users, redirecting unauthenticated requests to the login page.
 - **function.js**: Contains functions for client-side validation of email and password fields.
 - **crud.php**: Retrieves and displays stored student information from the database, presenting it in a dynamic HTML table format, Handles server-side logic for creating, reading, updating, and deleting student records. Implements role-based access control to differentiate user capabilities.
+- **security_config.php**: Centralizes security configurations including CSP implementation, CSRF token generation, and session security settings.
 
 ## File Interactions
-- Users begin at `index.html` or `register.html` to log in or create a new account, respectively.
-- Upon successful authentication, users are directed to `form.html` to enter and submit student details.
-- `addData.php` processes and validates submitted information, storing it securely in the database.
-- `crud.php` fetches and displays all submitted student details, allowing only certain roles able to access entered data.
-- `session_checks.php` is included in all protected pages to manage access based on user authentication status.
+- **Initial Setup**: Users start at `index.html` or `register.html` to log in or register.
+- **Secure Session Management**: Integrated on all pages requiring secure interactions to initiate sessions with CSP and CSRF protection.
+- **Form Submission**: Users submit details through `form.html`, processed by `addData.php` under stringent security checks.
+- **Data Management**: `crud.php` retrieves and displays data, managing CRUD operations securely based on user roles.
 
 ## Navigating the Application
 - Start by either logging in through `index.html` or registering a new account via `register.html`.
