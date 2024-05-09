@@ -19,18 +19,17 @@ This project is designed to illustrate a secure web application framework with a
 - **validation.js**: Manages client-side validation, ensuring all input fields conform to expected formats before submission. Utilizes JavaScript's `test()` method for regex validation.
 - **addData.php**: Processes form submissions server-side, performing additional validation checks before persisting data to a MySQL database. Leverages PHP's `preg_match()` for regex validation.
 - **index.html**: The login page where existing users can sign in.
-- **register.html**: The registration page for new users to create an account.
 - **login.php**: Handles the authentication of users, including input validation and session management.
-- **logout.php**: Facilitates user logout, terminating the session and redirecting to the login page.
+- **register.html**: The registration page for new users to create an account.
 - **register.php**: Processes new user registrations, including input validation and inserting new records into the database with `password_hash()` and `htmlspecialchars()`.
+- **logout.php**: Facilitates user logout, terminating the session and redirecting to the login page.
 - **session_checks.php**: Ensures that certain pages are accessible only by authenticated users, redirecting unauthenticated requests to the login page.
-- **function.js**: Contains functions for client-side validation of email and password fields.
 - **crud.php**: Retrieves and displays stored student information from the database, presenting it in a dynamic HTML table format, Handles server-side logic for creating, reading, updating, and deleting student records. Implements role-based access control to differentiate user capabilities.
 - **security_config.php**: Centralizes security configurations including CSP implementation, CSRF token generation, and session security settings.
 
 ## File Interactions
 - **Initial Setup**: Users start at `index.html` or `register.html` to log in or register.
-- **Secure Session Management**: Integrated on all pages requiring secure interactions to initiate sessions with CSP and CSRF protection.
+- **Secure Session Management**: Integrated on all pages requiring secure interactions to initiate sessions with CSP and CSRF protection. `security_config.php`
 - **Form Submission**: Users submit details through `form.html`, processed by `addData.php` under stringent security checks.
 - **Data Management**: `crud.php` retrieves and displays data, managing CRUD operations securely based on user roles.
 
